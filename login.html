@@ -18,9 +18,11 @@
         <input type="password" id="password" name="password" required />
       </div>
       <br />
+      <input type="checkbox" id="showPassLogin" /> Mostrar contraseña<br />
       <button type="submit" class="button">
         <span class="bp">Login</span>
       </button>
+      <button type="button" id="clearBtnLogin">Limpiar</button>
     </form>
     <button
       onclick="window.location.href='register.html'"
@@ -29,6 +31,20 @@
       Ir a registro
     </button>
     <script>
+      // Mostrar/ocultar contraseña
+      document
+        .getElementById("showPassLogin")
+        .addEventListener("change", function () {
+          const pass = document.getElementById("password");
+          pass.type = this.checked ? "text" : "password";
+        });
+      // Limpiar formulario
+      document
+        .getElementById("clearBtnLogin")
+        .addEventListener("click", function () {
+          document.getElementById("loginForm").reset();
+        });
+      // Validar usuario
       document
         .getElementById("loginForm")
         .addEventListener("submit", function (e) {
