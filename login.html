@@ -1,28 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./loginres.css" />
     <title>Login</title>
   </head>
   <body>
-    <div class="regform">
-      <h1>Login</h1>
-      <form action="/login" method="POST">
-        <label for="username">Username:</label>
-        <div class="input">
-          <input type="text" id="username" name="username" required />
-        </div>
-        <br />
-        <label for="password">Password:</label>
-        <div class="input">
-          <input type="password" id="password" name="password" required />
-        </div>
-        <br />
-        <a href="./Index.html" class="button"><span class="bp">Login</span></a>
-      </form>
-      <p>Don't have an account? <a href="./register.html">Register here</a></p>
-    </div>
+    <h1>Login</h1>
+    <form id="loginForm">
+      <label for="username">Username:</label>
+      <div class="input">
+        <input type="text" id="username" name="username" required />
+      </div>
+      <br />
+      <label for="password">Password:</label>
+      <div class="input">
+        <input type="password" id="password" name="password" required />
+      </div>
+      <br />
+      <button type="submit" class="button">
+        <span class="bp">Login</span>
+      </button>
+    </form>
+    <button
+      onclick="window.location.href='register.html'"
+      style="margin-top: 10px"
+    >
+      Ir a registro
+    </button>
+    <script>
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const username = document.getElementById("username").value;
+          const password = document.getElementById("password").value;
+          const user = JSON.parse(localStorage.getItem("usuario"));
+          if (
+            user &&
+            user.username === username &&
+            user.password === password
+          ) {
+            alert("Bienvenido");
+            window.location.href = "index.html";
+          } else {
+            alert("Usuario o contraseña incorrectos");
+          }
+        });
+    </script>
   </body>
 </html>
